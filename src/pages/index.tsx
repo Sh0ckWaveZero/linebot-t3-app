@@ -1,9 +1,10 @@
-import React, { FC } from "react";
-import { type NextPage } from "next";
-import Head from "next/head";
-import { signIn, signOut, useSession } from "next-auth/react";
+import React from 'react';
+import { type NextPage } from 'next';
+import Image from 'next/image';
+import Head from 'next/head';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
 const Home: NextPage = () => {
   return (
@@ -32,7 +33,7 @@ const Home: NextPage = () => {
 };
 export default Home;
 
-const AuthShowcase: FC = () => {
+const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
 
   return (
@@ -42,9 +43,12 @@ const AuthShowcase: FC = () => {
           <div className="container mx-auto my-2 p-2">
             <div className="flex flex-row justify-center">
               <div className="h-50 w-50 relative m-1 mr-2 flex items-center justify-center rounded-full bg-gray-500 text-xl text-white">
-                <img
-                  src={sessionData?.user?.image || "/otter.png"}
+                <Image
+                  src={sessionData?.user?.image || '/images/otter.svg'}
                   className="h-40 w-40 rounded-full"
+                  width={400}
+                  height={400}
+                  alt="logo"
                 />
               </div>
             </div>
@@ -63,7 +67,7 @@ const AuthShowcase: FC = () => {
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
         onClick={sessionData ? () => void signOut() : () => void signIn()}
       >
-        {sessionData ? "ลงชื่อออก" : "ลงชื่อใช้งาน"}
+        {sessionData ? 'ลงชื่อออก' : 'ลงชื่อใช้งาน'}
       </button>
     </div>
   );
